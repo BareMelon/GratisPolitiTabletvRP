@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politi MDT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="tablet-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="police-logo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">POLITI MDT</span>
+                    <span class="brand-sub">Rigspolitiet v2.0</span>
+                </div>
+            </div>
+
+            <div class="officer-card" id="officer-card">
+                <div class="officer-avatar" id="officer-avatar"></div>
+                <div class="officer-info">
+                    <span class="officer-name" id="officer-name">Indlæser...</span>
+                    <span class="officer-badge" id="officer-badge">—</span>
+                </div>
+                <div class="officer-status" id="officer-status-dot"></div>
+            </div>
+
+            <nav class="nav-menu">
+                <button class="nav-btn active" data-tab="dashboard" onclick="switchTab('dashboard')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    <span>Oversigt</span>
+                </button>
+                <button class="nav-btn" data-tab="citizen" onclick="switchTab('citizen')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <span>Søg Borger</span>
+                </button>
+                <button class="nav-btn" data-tab="vehicle" onclick="switchTab('vehicle')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 17h14M5 17a2 2 0 01-2-2V9a2 2 0 012-2h1l2-3h8l2 3h1a2 2 0 012 2v6a2 2 0 01-2 2M5 17v1a1 1 0 001 1h1a1 1 0 001-1v-1m10 0v1a1 1 0 001 1h1a1 1 0 001-1v-1"/></svg>
+                    <span>Søg Køretøj</span>
+                </button>
+                <button class="nav-btn" data-tab="warrants" onclick="switchTab('warrants')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <span>Efterlysninger</span>
+                </button>
+                <button class="nav-btn" data-tab="bolo" onclick="switchTab('bolo')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+                    <span>BOLO</span>
+                </button>
+                <button class="nav-btn" data-tab="dispatch" onclick="switchTab('dispatch')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                    <span>112 Dispatch</span>
+                </button>
+                <button class="nav-btn" data-tab="reports" onclick="switchTab('reports')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    <span>Rapporter</span>
+                </button>
+                <button class="nav-btn" data-tab="fines" onclick="switchTab('fines')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                    <span>Bøder</span>
+                </button>
+                <button class="nav-btn" data-tab="units" onclick="switchTab('units')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                    <span>Enheder</span>
+                </button>
+                <button class="nav-btn" data-tab="settings" onclick="switchTab('settings')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                    <span>Indstillinger</span>
+                </button>
+            </nav>
+
+            <button class="nav-btn close-btn" onclick="closeMDT()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <span>Luk MDT</span>
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- TOAST CONTAINER -->
+            <div id="toast-container"></div>
+
+            <!-- TAB: Dashboard -->
+            <div class="tab active" id="tab-dashboard">
+                <div class="section-header">
+                    <h2>Velkommen til Rigspolitiets MDT</h2>
+                    <p>Centralt edb-system for Dansk Politi</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card"><div class="stat-icon teal">👮</div><div class="stat-body"><span class="stat-label">Aktive Betjente</span><span class="stat-value" id="stat-cops">--</span></div></div>
+                    <div class="stat-card"><div class="stat-icon red">⛔</div><div class="stat-body"><span class="stat-label">Åbne Efterlysninger</span><span class="stat-value" id="stat-warrants">--</span></div></div>
+                    <div class="stat-card"><div class="stat-icon yellow">📢</div><div class="stat-body"><span class="stat-label">Aktive BOLOs</span><span class="stat-value" id="stat-bolos">--</span></div></div>
+                </div>
+                <div class="section-header" style="margin-top:32px;"><h3>Seneste 112 Opkald</h3></div>
+                <div class="dispatch-feed" id="dashboard-dispatch">
+                    <div class="empty-state">Ingen aktive opkald.</div>
+                </div>
+            </div>
+
+            <!-- TAB: Citizen Search -->
+            <div class="tab" id="tab-citizen">
+                <div class="section-header"><h2>Søg Borger</h2><p>Søg via CPR-nummer (ID) eller fulde navn</p></div>
+                <div class="search-bar">
+                    <input type="text" id="citizen-input" placeholder="Indtast CPR (ID) eller navn..." onkeydown="if(event.key==='Enter')searchCitizen()">
+                    <button class="btn btn-primary" onclick="searchCitizen()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        Søg
+                    </button>
+                </div>
+                <div id="citizen-results" class="results-area">
+                    <div class="empty-state">Ingen søgning foretaget endnu.</div>
+                </div>
+            </div>
+
+            <!-- TAB: Vehicle Search -->
+            <div class="tab" id="tab-vehicle">
+                <div class="section-header"><h2>Søg Køretøj</h2><p>Søg via nummerplade</p></div>
+                <div class="search-bar">
+                    <input type="text" id="vehicle-input" placeholder="Indtast nummerplade..." onkeydown="if(event.key==='Enter')searchVehicle()">
+                    <button class="btn btn-primary" onclick="searchVehicle()">Søg</button>
+                </div>
+                <div id="vehicle-results" class="results-area">
+                    <div class="empty-state">Ingen søgning foretaget endnu.</div>
+                </div>
+            </div>
+
+            <!-- TAB: Warrants -->
+            <div class="tab" id="tab-warrants">
+                <div class="section-header-row">
+                    <div><h2>Efterlysninger</h2><p>Aktive efterlysninger i systemet</p></div>
+                    <button class="btn btn-primary" onclick="showCreateWarrantForm()">+ Ny Efterlysning</button>
+                </div>
+                <div id="warrant-form" class="form-panel" style="display:none;">
+                    <h3>Opret Efterlysning</h3>
+                    <div class="form-grid">
+                        <div class="form-group"><label>Borger CPR (ID)</label><input type="number" id="warrant-citizen-id" placeholder="CPR nummer"></div>
+                        <div class="form-group"><label>Borger Navn</label><input type="text" id="warrant-citizen-name" placeholder="Fulde navn"></div>
+                        <div class="form-group full"><label>Begrundelse</label><textarea id="warrant-reason" placeholder="Beskrivelse af efterlysningen..." rows="3"></textarea></div>
+                        <div class="form-group"><label>Prioritet</label>
+                            <select id="warrant-priority"><option value="low">Lav</option><option value="medium" selected>Middel</option><option value="high">Høj</option></select>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-ghost" onclick="hideForm('warrant-form')">Annuller</button>
+                        <button class="btn btn-primary" onclick="createWarrant()">Opret</button>
+                    </div>
+                </div>
+                <div id="warrants-list" class="data-list"><div class="empty-state">Indlæser...</div></div>
+            </div>
+
+            <!-- TAB: BOLO -->
+            <div class="tab" id="tab-bolo">
+                <div class="section-header-row">
+                    <div><h2>BOLO — Eftersøgninger</h2><p>Be On the Lookout</p></div>
+                    <button class="btn btn-primary" onclick="showCreateBoloForm()">+ Ny BOLO</button>
+                </div>
+                <div id="bolo-form" class="form-panel" style="display:none;">
+                    <h3>Opret BOLO</h3>
+                    <div class="form-grid">
+                        <div class="form-group"><label>Type</label><select id="bolo-type"><option value="person">Person</option><option value="vehicle">Køretøj</option></select></div>
+                        <div class="form-group"><label>Titel</label><input type="text" id="bolo-title" placeholder="Kort beskrivelse"></div>
+                        <div class="form-group full"><label>Detaljeret Beskrivelse</label><textarea id="bolo-desc" rows="3" placeholder="Beskriv signalement, omstændigheder..."></textarea></div>
+                        <div class="form-group"><label>Nummerplade (valgfri)</label><input type="text" id="bolo-plate" placeholder="AB 12 345"></div>
+                        <div class="form-group"><label>Sidst Set</label><input type="text" id="bolo-lastseen" placeholder="Lokation"></div>
+                        <div class="form-group"><label>Prioritet</label><select id="bolo-priority"><option value="low">Lav</option><option value="medium" selected>Middel</option><option value="high">Høj</option></select></div>
+                        <div class="form-group"><label>Foto URL (valgfri)</label><input type="text" id="bolo-photo" placeholder="https://..."></div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-ghost" onclick="hideForm('bolo-form')">Annuller</button>
+                        <button class="btn btn-primary" onclick="createBolo()">Opret BOLO</button>
+                    </div>
+                </div>
+                <div id="bolos-list" class="data-list"><div class="empty-state">Indlæser...</div></div>
+            </div>
+
+            <!-- TAB: Dispatch -->
+            <div class="tab" id="tab-dispatch">
+                <div class="section-header"><h2>112 Dispatch</h2><p>Aktive opkald og udrykning</p></div>
+                <div id="dispatch-list" class="data-list"><div class="empty-state">Indlæser...</div></div>
+            </div>
+
+            <!-- TAB: Reports -->
+            <div class="tab" id="tab-reports">
+                <div class="section-header-row">
+                    <div><h2>Rapporter</h2><p>Opret og gennemse hændelsesrapporter</p></div>
+                    <button class="btn btn-primary" onclick="showCreateReportForm()">+ Ny Rapport</button>
+                </div>
+                <div id="report-form" class="form-panel" style="display:none;">
+                    <h3>Opret Rapport</h3>
+                    <div class="form-grid">
+                        <div class="form-group"><label>Titel</label><input type="text" id="report-title" placeholder="Rapporttitel"></div>
+                        <div class="form-group"><label>Kategori</label>
+                            <select id="report-category">
+                                <option value="traffic">Trafik</option><option value="crime">Kriminalitet</option><option value="domestic">Husspektakler</option>
+                                <option value="drugs">Narko</option><option value="theft">Tyveri</option><option value="assault">Overfald</option>
+                                <option value="fraud">Bedrageri</option><option value="other">Andet</option>
+                            </select>
+                        </div>
+                        <div class="form-group full"><label>Beskrivelse</label><textarea id="report-desc" rows="5" placeholder="Detaljeret hændelsesbeskrivelse..."></textarea></div>
+                        <div class="form-group"><label>Involverede Borgere</label><input type="text" id="report-citizens" placeholder="Navne adskilt af komma"></div>
+                        <div class="form-group"><label>Involverede Køretøjer</label><input type="text" id="report-vehicles" placeholder="Nummerplader"></div>
+                        <div class="form-group"><label>Lokation</label><input type="text" id="report-location" placeholder="Hvor skete det?"></div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-ghost" onclick="hideForm('report-form')">Annuller</button>
+                        <button class="btn btn-primary" onclick="createReport()">Gem Rapport</button>
+                    </div>
+                </div>
+                <div id="reports-list" class="data-list"><div class="empty-state">Indlæser...</div></div>
+            </div>
+
+            <!-- TAB: Fines -->
+            <div class="tab" id="tab-fines">
+                <div class="section-header"><h2>Udsted Bøde</h2><p>Vælg borger og bødetype</p></div>
+                <div class="form-panel">
+                    <div class="form-grid">
+                        <div class="form-group"><label>Borger CPR (ID)</label><input type="number" id="fine-citizen-id" placeholder="CPR nummer"></div>
+                        <div class="form-group"><label>Borger Navn</label><input type="text" id="fine-citizen-name" placeholder="Fulde navn"></div>
+                        <div class="form-group"><label>Bødekategori</label>
+                            <select id="fine-category" onchange="updateFineAmount()">
+                                <!-- Populated by JS from Config -->
+                            </select>
+                        </div>
+                        <div class="form-group"><label>Beløb (kr.)</label><input type="number" id="fine-amount" placeholder="0"></div>
+                    </div>
+                    <div class="form-actions"><button class="btn btn-primary" onclick="issueFine()">Udsted Bøde</button></div>
+                </div>
+            </div>
+
+            <!-- TAB: Units -->
+            <div class="tab" id="tab-units">
+                <div class="section-header"><h2>Aktive Enheder</h2><p>Oversigt over alle betjente i tjeneste</p></div>
+                <div class="status-selector">
+                    <span>Din Status:</span>
+                    <div id="status-buttons"></div>
+                </div>
+                <div id="units-list" class="data-list"><div class="empty-state">Indlæser...</div></div>
+            </div>
+
+            <!-- TAB: Settings -->
+            <div class="tab" id="tab-settings">
+                <div class="section-header"><h2>Indstillinger</h2><p>Personlige MDT-indstillinger</p></div>
+                <div class="form-panel" style="max-width:500px;">
+                    <div class="form-grid">
+                        <div class="form-group"><label>Tjenestenummer (Badge)</label><input type="text" id="settings-badge" placeholder="F.eks. 1247"></div>
+                        <div class="form-group"><label>Kaldesignal (Callsign)</label><input type="text" id="settings-callsign" placeholder="F.eks. Alpha-1"></div>
+                    </div>
+                    <div class="form-actions"><button class="btn btn-primary" onclick="saveSettings()">Gem Indstillinger</button></div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
